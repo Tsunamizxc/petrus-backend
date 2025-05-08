@@ -11,7 +11,7 @@ include 'vendor/functions/core.php';
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <meta name="theme-color" content="#111111">
-  <title>2dit-gulp-2025</title>
+  <title>Петрус | <?=$breadcrumbs?></title>
   <!-- <link rel="preload" href="fonts/MullerRegular.woff2" as="font" type="font/woff2" crossorigin> -->
   <link rel="stylesheet" href="css/vendor.css">
   <link rel="stylesheet" href="css/main.css">
@@ -32,13 +32,21 @@ include 'vendor/functions/core.php';
                     </a>
                 </div>
                 <div class="header__row_contacts">
-                    <a href="#" class="header__contacts_phone">+7 (999) 999 99-99</a>
+                    <a href="tel:+79999999999" class="header__contacts_phone">+7 (999) 999 99-99</a>
                     <a href="#" class="header__contacts_city">Омск</a>
                 </div>
             </div>
             <div class="header__row_right">
                 <div class="header__row_menu">
-                    <ul class="header__menu">
+                    <ul class="header__menu" <?if(isset($_SESSION['user'])){?>
+                        
+                        <?if($_SESSION['user']['role'] == '1'){?>
+                            style='width:53rem;'
+                        <?}else{?>
+                            style='width:48rem;'
+                            <?}?>
+                    <?}?>
+                    >
                         <li class="header__menu_item">
                             <a href="index.php#products" class="header__menu_link">Наша продукция</a>
                         </li>
@@ -48,6 +56,17 @@ include 'vendor/functions/core.php';
                         <li class="header__menu_item">
                             <a href="#contacts" class="header__menu_link">Контакты</a>
                         </li>
+                        <?if(isset($_SESSION['user'])){?>
+                            <?if($_SESSION['user']['role'] == '1'){?>
+                                <li class="header__menu_item">
+                                    <a href="admin.php" class="header__menu_link">А-панель</a>
+                                </li>
+                                
+                            <?}?>
+                            <li class="header__menu_item">
+                                    <a href="logout.php" class="header__menu_link">Выход</a>
+                                </li>
+                        <?}?>
                     </ul>
                 </div>
                 <div class="header__row_btn">
@@ -74,29 +93,27 @@ include 'vendor/functions/core.php';
                             <a href="#" class="burger__link"><img src="img/logo.svg" alt="" class="header__logo_img"></a>
                         </li>
                         <li class="burger__item">
-                            <a href="#" class="burger__link">Главная</a>
+                            <a href="index.php" class="burger__link">Главная</a>
                         </li>
                         <li class="burger__item">
-                            <a href="#" class="burger__link">Наша продукция</a>
+                            <a href="index.php#products" class="burger__link">Наша продукция</a>
                         </li>
                         <li class="burger__item">
-                            <a href="article.php" class="burger__link">Пресс-центр</a>
+                            <a href="articles.php" class="burger__link">Пресс-центр</a>
                         </li>
                         <li class="burger__item">
-                            <a href="#" class="burger__link">Контакты</a>
+                            <a href="#contacts" class="burger__link">Контакты</a>
                         </li>
-                        <li class="burger__item">
-                            <a href="#" class="burger__link">Админ-панель</a>
-                        </li>
-                        <li class="burger__item">
-                            <a href="#" class="burger__link">Авторизация</a>
-                        </li>
-                        <li class="burger__item">
-                            <a href="#" class="burger__link">Выход</a>
-                        </li>
-                        <!-- <li class="burger__item">
-                            <a href="contacts.php" class="burger__link">Контакты</a>
-                        </li> -->
+                        <?if(isset($_SESSION['user'])){?>
+                            <?if($_SESSION['user']['role'] == '1'){?>
+                                <li class="burger__item">
+                                    <a href="admin.php" class="burger__link">Админ-панель</a>
+                                </li>
+                                <li class="burger__item">
+                                    <a href="logout.php" class="burger__link">Выход</a>
+                                </li>
+                            <?}?>
+                        <?}?>
                     </ul>
                 </nav>
             </div>

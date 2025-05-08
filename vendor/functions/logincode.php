@@ -10,8 +10,9 @@ if (isset($_POST)) {
         $user = $users->fetch_assoc();
         $_SESSION['user'] = [
             'id' => $user['id'],
-            'login' => $user['id'],
-            'email' => $user['id']
+            'login' => $user['login'],
+            'email' => $user['email'],
+            'role' => $user['role'],
 
         ];
         $_SESSION['errors']['errorlog'] = '';

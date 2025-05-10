@@ -7,6 +7,11 @@ $blist = [
         'class' => ''
     ],
     'second' => [
+        'name' => '/ Пресс-центр',
+        'link' => 'articles.php',
+        'class' => ''
+    ],
+    'three' => [
         'name' => '/ ' . $_GET['name'],
         'link' => 'article.php?id=' . $_GET['id'] . '&name='. $_GET['name'],
         'class' => 'active'

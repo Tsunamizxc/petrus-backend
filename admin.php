@@ -86,12 +86,42 @@ include 'vendor/components/header.php';
                                             Отправить
                                         </button>
                                     </div>
-                                     <? if (isset($_SESSION['error']['admin'])) {?>
+                                    <? if (isset($_SESSION['error']['admin'])) {?>
                                         <p class="errortext"><?=$_SESSION['error']['admin'];?></p>
                                     <?} ?>
                                 </form>
+                                <div class="adminp__delarticle_form">
+                                    <form action="vendor/functions/delarticlescode.php" method='POST' class="adminp__form">
+                                        <div class="adminp__form_line">
+                                            <div class="adminp__article_header">
+                                                <h2 class="adminp__header_title">
+                                                    Удаление статей
+                                                </h2>
+                                            </div>
+                                            <label for="" class="adminp__line_label">
+                                                Удалить запись пресс-центра
+                                            </label>
+                                            <? $articlesDel = $link ->query("SELECT * FROM `articles`");
+                                            if($articlesDel->num_rows === 0){?>
+                                                <p class="errortext">Таблица записей пуста</p>
+                                            <?}?>
+                                            <select name="delArticlesItem" id="">
+                                                <?foreach ($articlesDel as $key => $value) {?>
+                                                    <option value="<?=$value['id']?>">
+                                                        <?=$value['title']?>
+                                                    </option>
+                                                <?}?>
+                                            </select>
+                                        </div>
+                                        <div class="adminp__form_btns">
+                                            <button class="adminp__btns_btn" type="submit" name="article-del">
+                                                Удалить
+                                            </button>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
-
+                            
                         </div>
                         <div class="adminp__row_contacts">
                             <div class="adminp__contacts_header">
@@ -100,13 +130,21 @@ include 'vendor/components/header.php';
                                 </h2>
                             </div>
                             <div class="adminp__contacts_form">
-                                <form action="" class="adminp__form contactsf">
+                                <?
+                                $contacts = $link ->query("SELECT * FROM `contacts`");
+                                if($contacts->num_rows === 0){?>
+                                    <p class="errortext">Таблица записей пуста</p>
+                                <?}?>
+                                <?
+                                
+                                foreach ($contacts as $key => $value) {?>
+                                <form action="vendor/functions/delcontactscode.php" method="POST" class="adminp__form contactsf">
                                     <div class="adminp__form_line">
                                         <label for="" class="adminp__line_label">
                                             Имя:
                                         </label>
                                         <p class="adminp__line_text">
-                                            Семён
+                                           <?=$value['name'];?>
                                         </p>
                                     </div>
                                     <div class="adminp__form_line">
@@ -114,7 +152,7 @@ include 'vendor/components/header.php';
                                             Телефон:
                                         </label>
                                         <p class="adminp__line_text">
-                                            89999999999
+                                            <?=$value['phone'];?>
                                         </p>
                                     </div>
                                     <div class="adminp__form_line">
@@ -122,7 +160,7 @@ include 'vendor/components/header.php';
                                             Компания:
                                         </label>
                                         <p class="adminp__line_text">
-                                            Петрус ООО
+                                            <?=$value['company'];?>
                                         </p>
                                     </div>
                                     <div class="adminp__form_line">
@@ -130,7 +168,7 @@ include 'vendor/components/header.php';
                                             Почта:
                                         </label>
                                         <p class="adminp__line_text">
-                                            semen.gnedenkov@mail.ru
+                                            <?=$value['email'];?>
                                         </p>
                                     </div>
                                     <div class="adminp__form_line">
@@ -138,62 +176,17 @@ include 'vendor/components/header.php';
                                             Вопрос:
                                         </label>
                                         <p class="adminp__line_text">
-                                            Кто вы?
+                                            <?=$value['message'];?>
                                         </p>
                                     </div>
+                                    <input type="hidden" value='<?=$value['id'];?>' name="delitem">
                                     <div class="adminp__form_btns">
-                                        <button class="adminp__btns_btn red" type="submit">
+                                        <button class="adminp__btns_btn red" name='delbtn' type="submit">
                                             Удалить
                                         </button>
                                     </div>
                                 </form>
-                                <form action="" class="adminp__form contactsf">
-                                    <div class="adminp__form_line">
-                                        <label for="" class="adminp__line_label">
-                                            Имя:
-                                        </label>
-                                        <p class="adminp__line_text">
-                                            Семён
-                                        </p>
-                                    </div>
-                                    <div class="adminp__form_line">
-                                        <label for="" class="adminp__line_label">
-                                            Телефон:
-                                        </label>
-                                        <p class="adminp__line_text">
-                                            89999999999
-                                        </p>
-                                    </div>
-                                    <div class="adminp__form_line">
-                                        <label for="" class="adminp__line_label">
-                                            Компания:
-                                        </label>
-                                        <p class="adminp__line_text">
-                                            Петрус ООО
-                                        </p>
-                                    </div>
-                                    <div class="adminp__form_line">
-                                        <label for="" class="adminp__line_label">
-                                            Почта:
-                                        </label>
-                                        <p class="adminp__line_text">
-                                            semen.gnedenkov@mail.ru
-                                        </p>
-                                    </div>
-                                    <div class="adminp__form_line">
-                                        <label for="" class="adminp__line_label">
-                                            Вопрос:
-                                        </label>
-                                        <p class="adminp__line_text">
-                                            Кто вы?
-                                        </p>
-                                    </div>
-                                    <div class="adminp__form_btns">
-                                        <button class="adminp__btns_btn red" type="submit">
-                                            Удалить
-                                        </button>
-                                    </div>
-                                </form>
+                            <?}?>
                             </div>
                         </div>
                     </div>

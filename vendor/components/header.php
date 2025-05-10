@@ -12,6 +12,8 @@ include 'vendor/functions/core.php';
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <meta name="theme-color" content="#111111">
   <title>Петрус | <?=$breadcrumbs?></title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+
   <!-- <link rel="preload" href="fonts/MullerRegular.woff2" as="font" type="font/woff2" crossorigin> -->
   <link rel="stylesheet" href="css/vendor.css">
   <link rel="stylesheet" href="css/main.css">
@@ -23,63 +25,62 @@ include 'vendor/functions/core.php';
 <body class="page__body">
     <div class="site-container">
         <header class="header">
-    <div class="container">
-        <div class="header__row">
-            <div class="header__row_left">
-                <div class="header__row_logo">
-                    <a href="index.php" class="header__logo_link">
-                        <img src="img/logo.svg" alt="" class="header__logo_img">
-                    </a>
-                </div>
-                <div class="header__row_contacts">
-                    <a href="tel:+79999999999" class="header__contacts_phone">+7 (999) 999 99-99</a>
-                    <a href="#" class="header__contacts_city">Омск</a>
-                </div>
-            </div>
-            <div class="header__row_right">
-                <div class="header__row_menu">
-                    <ul class="header__menu" <?if(isset($_SESSION['user'])){?>
-                        
-                        <?if($_SESSION['user']['role'] == '1'){?>
-                            style='width:53rem;'
-                        <?}else{?>
-                            style='width:48rem;'
-                            <?}?>
-                    <?}?>
-                    >
-                        <li class="header__menu_item">
-                            <a href="index.php#products" class="header__menu_link">Наша продукция</a>
-                        </li>
-                        <li class="header__menu_item">
-                            <a href="articles.php" class="header__menu_link">Пресс-центр</a>
-                        </li>
-                        <li class="header__menu_item">
-                            <a href="#contacts" class="header__menu_link">Контакты</a>
-                        </li>
-                        <?if(isset($_SESSION['user'])){?>
-                            <?if($_SESSION['user']['role'] == '1'){?>
-                                <li class="header__menu_item">
-                                    <a href="admin.php" class="header__menu_link">А-панель</a>
-                                </li>
+            <div class="container">
+                <div class="header__row">
+                    <div class="header__row_left">
+                        <div class="header__row_logo">
+                            <a href="index.php" class="header__logo_link">
+                                <img src="img/logo.svg" alt="" class="header__logo_img">
+                            </a>
+                        </div>
+                        <div class="header__row_contacts">
+                            <a href="tel:+79999999999" class="header__contacts_phone">+7 (999) 999 99-99</a>
+                            <a href="#" class="header__contacts_city">Омск</a>
+                        </div>
+                    </div>
+                    <div class="header__row_right">
+                        <div class="header__row_menu">
+                            <ul class="header__menu" <?if(isset($_SESSION['user'])){?>
                                 
+                                <?if($_SESSION['user']['role'] == '1'){?>
+                                    style='width:53rem;'
+                                <?}else{?>
+                                    style='width:48rem;'
+                                    <?}?>
                             <?}?>
-                            <li class="header__menu_item">
-                                    <a href="logout.php" class="header__menu_link">Выход</a>
+                            >
+                                <li class="header__menu_item">
+                                    <a href="index.php#products" class="header__menu_link">Наша продукция</a>
                                 </li>
-                        <?}?>
-                    </ul>
-                </div>
-                <div class="header__row_btn">
-                    <a href="#" class="header__btn_item" >Оставить заявку</a>
+                                <li class="header__menu_item">
+                                    <a href="articles.php" class="header__menu_link">Пресс-центр</a>
+                                </li>
+                                <li class="header__menu_item">
+                                    <a href="#contacts" class="header__menu_link">Контакты</a>
+                                </li>
+                                <?if(isset($_SESSION['user'])){?>
+                                    <?if($_SESSION['user']['role'] == '1'){?>
+                                        <li class="header__menu_item">
+                                            <a href="admin.php" class="header__menu_link">А-панель</a>
+                                        </li>
+                                        
+                                    <?}?>
+                                    <li class="header__menu_item">
+                                            <a href="logout.php" class="header__menu_link">Выход</a>
+                                        </li>
+                                <?}?>
+                            </ul>
+                        </div>
+                        <div class="header__row_btn">
+                            <a data-fancybox href="#hidden" class="header__btn_item" >Оставить заявку</a>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
+        </header>
+    <div class="slick-bg">
+
     </div>
-
-</header>
-<div class="slick-bg">
-
-</div>
 <div class="burger-menu">
     <div class="container">
         <div class="burger-menu__row">
@@ -114,6 +115,9 @@ include 'vendor/functions/core.php';
                                 </li>
                             <?}?>
                         <?}?>
+                        <div class="header__row_btn">
+                            <a data-fancybox href="#hidden" class="header__btn_item" >Оставить заявку</a>
+                        </div>
                     </ul>
                 </nav>
             </div>

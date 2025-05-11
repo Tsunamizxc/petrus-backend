@@ -180,6 +180,10 @@ include 'vendor/components/header.php';?>
             </div>
             <div class="swiper mySwiperPress">
                 <div class="swiper-wrapper">
+                <? $product = $link ->query("SELECT * FROM `articles`");
+                if($product->num_rows === 0){?>
+                    <p class="errortext">Записей нету</p>
+                <?}?>
                     <?
                     $product = $link ->query("SELECT * FROM `articles` LIMIT 2");
                     foreach ($product as $key => $value){?>
@@ -213,6 +217,10 @@ include 'vendor/components/header.php';?>
                 <div class="swiper-pagination"></div>
             </div>
             <div class="press__row">
+                <? $product = $link ->query("SELECT * FROM `articles`");
+                if($product->num_rows === 0){?>
+                    <p class="errortext">Записей нету</p>
+                <?}?>
                 <?
                 $product = $link ->query("SELECT * FROM `articles` LIMIT 2");
                 foreach ($product as $key => $value){?>

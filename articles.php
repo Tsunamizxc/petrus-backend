@@ -40,8 +40,12 @@ include 'vendor/components/header.php';
                         }else{
                             $articles = $link ->query("SELECT * FROM `articles`");
                         }
+                        if($articles->num_rows === 0){?>
+                            <p class="errortext">Записей нету</p>
+                        <?}else{
+                            foreach ($articles as $key => $value) {
+                            ?>
                         
-                        foreach ($articles as $key => $value) {?>
                            <div class="press__row_item">
                                 <div class="press__item_img">
                                     <img src="img/upload/<?=$value['img']?>" alt="" class="press__img_item">
@@ -66,7 +70,8 @@ include 'vendor/components/header.php';
                                     </a>
                                 </div>
                             </div>
-                        <?}?>
+                        <?}
+                    }?>
                             
                             
 

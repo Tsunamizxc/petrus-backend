@@ -99,11 +99,11 @@ include 'vendor/components/header.php';
                                                 </h2>
                                             </div>
                                             <label for="" class="adminp__line_label">
-                                                Удалить запись пресс-центра
+                                                Удалить запись пресс-центра:
                                             </label>
                                             <? $articlesDel = $link ->query("SELECT * FROM `articles`");
                                             if($articlesDel->num_rows === 0){?>
-                                                <p class="errortext">Таблица записей пуста</p>
+                                                <p class="errortext">Записей нету</p>
                                             <?}?>
                                             <select name="delArticlesItem" id="">
                                                 <?foreach ($articlesDel as $key => $value) {?>
